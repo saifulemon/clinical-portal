@@ -1,5 +1,6 @@
 import React from "react";
 import bannerImg from "../../assets/images/bannerImg.jpg";
+import PrimaryBtn from "../Shared/PrimaryBtn/PrimaryBtn";
 
 const Home = () => {
   return (
@@ -15,7 +16,7 @@ const Home = () => {
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
             a id nisi. Lorem ipsum dolor sit amet consectetur adipisicing.
           </p>
-          <button className="btn btn-primary uppercase text-white font-bold bg-gradient-to-r from-secondary to-primary">Get Started</button>
+          <PrimaryBtn>Get Started</PrimaryBtn>
         </div>
       </div>
     </div>

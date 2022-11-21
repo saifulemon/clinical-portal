@@ -2,6 +2,7 @@ import React from "react";
 import Banner from "./Banner";
 import Exceptional from "./Exceptional";
 import Info from "./Info";
+import MkAppointment from "./MkAppointment";
 import Service from "./Service";
 
 const Home = () => {
@@ -11,6 +12,7 @@ const Home = () => {
       <Info />
       <Service />
       <Exceptional />
+      <MkAppointment />
     </div>
   );
 };
