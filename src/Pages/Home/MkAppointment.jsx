@@ -14,7 +14,7 @@ const MkAppointment = () => {
       </div>
 
       <div className="flex-1 text-white">
-        <h3 className="text-xl text-primary font-bold">Appointment</h3>
+        <h3 className="text-xl text-secondary font-bold">Appointment</h3>
         <h2 className="text-3xl my-5">Make an appointment Today</h2>
         <p className="mb-5">
           It is a long established fact that a reader will be distracted by the
