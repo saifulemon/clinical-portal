@@ -5,6 +5,7 @@ import Info from "./Info";
 import MkAppointment from "./MkAppointment";
 import Service from "./Service";
 import Testimonial from "./Testimonial";
+import Form from "./Form";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <Exceptional />
       <MkAppointment />
       <Testimonial />
+      <Form />
     </div>
   );
 };
