@@ -6,6 +6,7 @@ const Footer = () => {
   return (
     <section style={{ 
       background: `url(${footerPng})`,
+      backgroundSize: 'cover' 
     }}>
       <footer className="footer p-10 text-dark">
         <div className="m-auto">
