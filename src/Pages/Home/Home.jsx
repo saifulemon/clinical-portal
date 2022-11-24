@@ -6,10 +6,11 @@ import MkAppointment from "./MkAppointment";
 import Service from "./Service";
 import Testimonial from "./Testimonial";
 import Form from "./Form";
+import Footer from "../Shared/Footer/Footer";
 
 const Home = () => {
   return (
-    <div className="px-12">
+    <div>
       <Banner />
       <Info />
       <Service />
@@ -17,6 +18,7 @@ const Home = () => {
       <MkAppointment />
       <Testimonial />
       <Form />
+      <Footer />
     </div>
   );
 };
