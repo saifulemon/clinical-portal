@@ -10,7 +10,7 @@ import Footer from "../Shared/Footer/Footer";
 
 const Home = () => {
   return (
-    <div>
+    <div className="px-14">
       <Banner />
       <Info />
       <Service />
