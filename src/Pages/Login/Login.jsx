@@ -1,25 +1,41 @@
 import React from "react";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import { useForm } from "react-hook-form";
+import Loading from "../Shared/Loading/Loading";
 
 const Login = () => {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
+
+  let signInError;
+  if(error || gError) {
+    signInError = <p className="text-red-500"><small>{error?.message || gError?.message}</small></p>
+  }
+
+  if (loading || gLoading) {
+    return <Loading />
+  }
+
+  const onSubmit = (data) => {
+    console.log(data);
+    signInWithEmailAndPassword(data.email, data.password);
+  };
   return (
     <section className="flex justify-center items-center h-screen">
       <div className="card w-96 bg-base-100 text-neutral shadow-xl">
         <div className="card-body items-center text-center">
           <h2 className="card-title">Login</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
-
             {/* for name input */}
             <div className="form-control w-full max-w-xs">
               <label className="label">
@@ -29,7 +45,7 @@ const Login = () => {
                 type="text"
                 className="input input-bordered w-full max-w-xs"
                 {...register("firstName", { required: true })}
-              aria-invalid={errors.firstName ? "true" : "false"}
+                aria-invalid={errors.firstName ? "true" : "false"}
               />
             </div>
 
@@ -44,17 +60,25 @@ const Login = () => {
                 {...register("email", {
                   required: {
                     value: true,
-                    message: "Email is required"
+                    message: "Email is required",
                   },
                   pattern: {
-                    value:  /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
-                    message: "Provide a valid email address"
-                  }
+                    value: /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
+                    message: "Provide a valid email address",
+                  },
                 })}
               />
               <label className="label">
-              {errors.email?.type === 'required' && <p role="alert" className="label-text-alt text-red-600">{errors.email.message}</p>}
-              {errors.email?.type === 'pattern' && <p role="alert" className="label-text-alt text-red-600">{errors.email.message}</p>}
+                {errors.email?.type === "required" && (
+                  <p role="alert" className="label-text-alt text-red-600">
+                    {errors.email.message}
+                  </p>
+                )}
+                {errors.email?.type === "pattern" && (
+                  <p role="alert" className="label-text-alt text-red-600">
+                    {errors.email.message}
+                  </p>
+                )}
               </label>
             </div>
 
@@ -69,20 +93,33 @@ const Login = () => {
                 {...register("password", {
                   required: {
                     value: true,
-                    message: "Password is required"
+                    message: "Password is required",
                   },
                   minLength: {
-                    value:  6,
-                    message: "Must be at least 6 characters or longer"
-                  }
+                    value: 6,
+                    message: "Must be at least 6 characters or longer",
+                  },
                 })}
               />
               <label className="label">
-              {errors.password?.type === 'required' && <p role="alert" className="label-text-alt text-red-600">{errors.password.message}</p>}
-              {errors.password?.type === 'minLength' && <p role="alert" className="label-text-alt text-red-600">{errors.password.message}</p>}
+                {errors.password?.type === "required" && (
+                  <p role="alert" className="label-text-alt text-red-600">
+                    {errors.password.message}
+                  </p>
+                )}
+                {errors.password?.type === "minLength" && (
+                  <p role="alert" className="label-text-alt text-red-600">
+                    {errors.password.message}
+                  </p>
+                )}
               </label>
             </div>
-            <input className="btn sm:btn-sm md:btn-md w-full max-w-xs text-white" type="submit" value="Login" />
+            {signInError}
+            <input
+              className="btn sm:btn-sm md:btn-md w-full max-w-xs text-white"
+              type="submit"
+              value="Login"
+            />
           </form>
           <div className="divider">OR</div>
           <button
