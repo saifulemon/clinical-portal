@@ -22,7 +22,7 @@ const Signup = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+  const [updateProfile, updateError] = useUpdateProfile(auth);
   const navigate = useNavigate();
   let signInError;
   if(error || gError || updateError) {
