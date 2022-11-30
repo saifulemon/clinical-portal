@@ -8,7 +8,7 @@ const Header = () => {
   const [user] = useAuthState(auth);
   const logOut = () => {
     signOut(auth);
-  }
+  };
   const menuItems = (
     <>
       <li>
@@ -26,10 +26,19 @@ const Header = () => {
       <li>
         <Link to="/contact">Contact Us</Link>
       </li>
+      {user && (
+        <li>
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+      )}
       <li>
-        {
-          user ? <button className="btn btn-ghost" onClick={logOut}>Sign Out</button> : <Link to="/login">Login</Link>
-        }
+        {user ? (
+          <button className="btn btn-ghost" onClick={logOut}>
+            Sign Out
+          </button>
+        ) : (
+          <Link to="/login">Login</Link>
+        )}
       </li>
     </>
   );
@@ -60,12 +69,12 @@ const Header = () => {
             {menuItems}
           </ul>
         </div>
-        <Link className="btn btn-ghost normal-case text-xl">Clinical Portal</Link>
+        <Link className="btn btn-ghost normal-case text-xl">
+          Clinical Portal
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal p-0">
-          {menuItems}
-        </ul>
+        <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
     </div>
   );
