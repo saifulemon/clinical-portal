@@ -6,24 +6,17 @@ import Loading from '../Shared/Loading/Loading';
 import BookingModal from './BookingModal';
 
 const AvailableAppoint = ({date}) => {
-    // const [services, setServices] = useState([]);
     const [treatment, setTreatment] = useState(null);
     const formatedDate = format(date, 'PP');
 
     const { data: services, isLoading, refetch } = useQuery(['available', formatedDate], () =>
-     fetch(`http://localhost:4000/available?date=${formatedDate}`).then(res =>
+     fetch(`http://localhost:5000/available?date=${formatedDate}`).then(res =>
        res.json())
      )
 
     if(isLoading) {
         return <Loading />;
     }
-
-    // useEffect( () => {
-    //     fetch(`http://localhost:4000/available?date=${formatedDate}`)
-    //     .then(res => res.json())
-    //     .then(data => setServices(data));
-    // }, [formatedDate])
     return (
         <div>
             <h4 className='text-xl text-secondary text-center mb-5'>Available Appointment on : {format(date, 'PP')}</h4>
