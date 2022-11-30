@@ -7,10 +7,10 @@ const AvailableAppoint = ({date}) => {
     const [services, setServices] = useState([]);
     const [treatment, setTreatment] = useState(null);
     useEffect( () => {
-        fetch('http://localhost:4000/service')
+        fetch('services.json')
         .then(res => res.json())
         .then(data => setServices(data))
-    })
+    }, [])
     return (
         <div>
             <h4 className='text-xl text-secondary text-center mb-5'>Available Appointment on : {format(date, 'PP')}</h4>
