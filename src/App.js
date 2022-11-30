@@ -9,6 +9,7 @@ import Signup from "./Pages/Login/Signup";
 import Header from "./Pages/Shared/Header/Header";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Dashboard from "./Pages/Dashboard/Dashboard";
 
 function App() {
   return (
@@ -22,6 +23,14 @@ function App() {
           element={
             <RequireAuth>
               <Appointment />
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/dashboard"
+          element={
+            <RequireAuth>
+              <Dashboard />
             </RequireAuth>
           }
         ></Route>
